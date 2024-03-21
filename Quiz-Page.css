@@ -1,0 +1,140 @@
+/* Your custom CSS */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Tahoma, Arial;
+    background-color: #7C0BF0;
+  
+}
+
+.quiz-app {
+    margin: 20px auto;
+    width: 50%;
+    background-color: rgb(255, 255, 255);
+    padding: 0px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.quiz-app .quiz-info {
+    display: flex;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.quiz-app .quiz-info .category {
+    flex: 1;
+}
+
+.countdown{
+display: flex;
+justify-content: center;
+background-color:#7C0BF0;
+color: white;
+width:50px ;
+border-radius: 10px;
+margin: 0 auto;
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.quiz-app .quiz-info .count {
+    flex: 1;
+    text-align: right;
+}
+
+.quiz-app .quiz-area {
+    background-color: white;
+    padding: 20px;
+    margin-top: 15px;
+    border-radius: 10px;
+}
+
+.quiz-app .quiz-area h2 {
+    margin: 0;
+    padding: 20px;
+}
+
+.quiz-app .answer-area {
+    background-color: white;
+    padding: 20px;
+}
+
+.answer {
+    background-color: #F5F5FF;
+    padding: 8px;
+    padding-bottom: 2px;
+    border-radius: 10px;
+    margin: 1%;
+}
+
+.answer {
+    border-bottom: 1px solid rgb(202, 202, 202);
+}
+
+.answer input[type="radio"]:checked + label {
+    color: #0075FF;
+  }
+  
+
+
+
+label {
+    cursor: pointer;
+    margin-left: 5px;
+    position: relative;
+}
+
+/* Overriding Bootstrap button styles */
+button.submit-button {
+    background-color: #7C0BF0;
+    color: white;
+    border: none;
+    display: block;
+    width: 30%;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 20px; /* Adjusted border-radius */
+    margin: 0 auto;
+    margin-top: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Optional: Adjust focus style for better accessibility */
+button.submit-button:focus {
+    outline: none;
+    
+}
+
+.quiz-app .billets{
+border-top: 1px;
+background-color: white;
+display: flex;
+padding: 5px;
+margin-top: 8px;
+
+}
+
+.quiz-app .billets .spans span {
+
+
+
+}
+
+
+@media screen and (max-width: 600px) {
+    /* Adjustments for smaller screens */
+    .quiz-app {
+        width: 90%;
+        margin-top:12%;
+    }
+    
+    button.submit-button {
+        width: 90%;
+        border-radius: 20px;
+    }
+}
