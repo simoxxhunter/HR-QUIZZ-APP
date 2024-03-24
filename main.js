@@ -1,14 +1,12 @@
-// Wait for the DOM to be fully loaded
-document.addEventListener("DOMContentLoaded", function() {
 
-    // Access DOM elements
-    const question = document.querySelector('.quiz-area h2');
-    const answers = document.querySelectorAll('.answer input[type="radio"]');
-    const submitButton = document.querySelector('.submit-button');
-    const countdown = document.querySelector('.countdown');
-    const resultsDiv = document.querySelector('.results');
-    const questionCountSpan = document.querySelector('.count span');
-    const categoryType = document.querySelector(".category");
+
+const question = document.querySelector('.quiz-area h2');
+const answers = document.querySelectorAll('.answer input[type="radio"]');
+const submitButton = document.querySelector('.submit-button');
+const countdown = document.querySelector('.countdown');
+const resultsDiv = document.querySelector('.results');
+const questionCountSpan = document.querySelector('.count span');
+const categoryType = document.querySelector(".category");
 
  
     const quizData = [
@@ -186,93 +184,86 @@ document.addEventListener("DOMContentLoaded", function() {
 
     
     let currentQuestionIndex = 0;
-    let score = 0;
-    const totalQuestions = quizData.length;
-    const initialTime = 15 * 60; 
-    let timeRemaining = initialTime;
-    let timerInterval;
+let score = 0;
+const totalQuestions = quizData.length;
+const initialTime = 15 * 60; // 15 minutes in seconds
+let timeRemaining = initialTime;
+let timerInterval;
 
-    
-    submitButton.addEventListener('click', function() {
-        checkAnswer();
+// Function to display question
+function displayQuestion() {
+    const currentQuestion = quizData[currentQuestionIndex];
+    question.textContent = currentQuestion.question;
+    answers.forEach((answer, index) => {
+        answer.nextElementSibling.textContent = currentQuestion.answers[index];
+        answer.checked = false;
     });
 
-    
-    function displayQuestion() {
-        const currentQuestion = quizData[currentQuestionIndex];
-        question.textContent = currentQuestion.question;
-        answers.forEach((answer, index) => {
-            answer.nextElementSibling.textContent = currentQuestion.answers[index];
-            answer.checked = false;
-        });
-        
+    questionCountSpan.textContent = `${currentQuestionIndex + 1}/${totalQuestions}`;
+    updateProgressBar();
 
-        questionCountSpan.textContent = `${currentQuestionIndex + 1}/${totalQuestions}`;
-        updateProgressBar();
-
-        if (currentQuestionIndex <= 3) {
-            categoryType.textContent = "Test de IQ";
-        }  else if (currentQuestionIndex <= 7) {
-            categoryType.textContent = "Test d'anglais"; 
-        }  else {
-
-            categoryType.textContent = "Test technique "; 
-        }
-
-
-
-
+    if (currentQuestionIndex <= 3) {
+        categoryType.textContent = "Test de IQ";
+    }  else if (currentQuestionIndex <= 7) {
+        categoryType.textContent = "Test d'anglais"; 
+    }  else {
+        categoryType.textContent = "Test technique "; 
     }
+}
 
-    
-    function checkAnswer() {
-        const selectedAnswer = document.querySelector('input[name="questions"]:checked');
-        if (!selectedAnswer) return; // No answer selected
+// Function to check answer
+function checkAnswer() {
+    const selectedAnswer = document.querySelector('input[name="questions"]:checked');
+    if (!selectedAnswer) return; // No answer selected
 
-        const selectedIndex = parseInt(selectedAnswer.id.slice(-1)); // Get index from answer id
-        if (selectedIndex === quizData[currentQuestionIndex].correctAnswerIndex) {
-            score++;
-        }
-        currentQuestionIndex++;
-        if (currentQuestionIndex < totalQuestions) {
-            displayQuestion();
-        } else {
-            endQuiz();
-        }
+    const selectedIndex = parseInt(selectedAnswer.id.slice(-1)); // Get index from answer id
+    if (selectedIndex === quizData[currentQuestionIndex].correctAnswerIndex) {
+        score++;
     }
-
-    
-    function updateProgressBar() {
-        const progress = (currentQuestionIndex + 1) / totalQuestions * 100; // Calculate progress percentage
-        const progressBar = document.querySelector('.progress-bar');
-        progressBar.style.width = `${progress}%`; 
-        progressBar.setAttribute('aria-valuenow', progress); // Update ARIA value
-    }
-
-    
-    function endQuiz() {
-        clearInterval(timerInterval);
-        resultsDiv.textContent = ` Votre score: ${score}/${totalQuestions}`;
-        updateProgressBar();
-    }
-
-    // Function to update the countdown timer
-    function updateTimer() {
-        const minutes = Math.floor(timeRemaining / 60);
-        const seconds = timeRemaining % 60;
-        countdown.innerHTML = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-        if (timeRemaining === 0) {
-            endQuiz();
-        }
-        timeRemaining--;
-    }
-
-    // Initialize the quiz
-    function initializeQuiz() {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < totalQuestions) {
         displayQuestion();
-        timerInterval = setInterval(updateTimer, 1000);
+    } else {
+        endQuiz();
     }
+}
 
-    // Call initializeQuiz to start the quiz
-    initializeQuiz();
+// Function to update progress bar
+function updateProgressBar() {
+    const progress = (currentQuestionIndex + 1) / totalQuestions * 100; // Calculate progress percentage
+    const progressBar = document.querySelector('.progress-bar');
+    progressBar.style.width = `${progress}%`; 
+    progressBar.setAttribute('aria-valuenow', progress); // Update ARIA value
+}
+
+// Function to end quiz
+function endQuiz() {
+    clearInterval(timerInterval);
+    resultsDiv.textContent = `Votre score: ${score}/${totalQuestions}`;
+    updateProgressBar();
+}
+
+// Function to update countdown timer
+function updateTimer() {
+    const minutes = Math.floor(timeRemaining / 60);
+    const seconds = timeRemaining % 60;
+    countdown.innerHTML = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    if (timeRemaining === 0) {
+        endQuiz();
+    }
+    timeRemaining--;
+}
+
+// Function to initialize the quiz
+function initializeQuiz() {
+    displayQuestion();
+    timerInterval = setInterval(updateTimer, 1000);
+}
+
+// Call initializeQuiz to start the quiz
+initializeQuiz();
+
+// Event listener for submit button
+submitButton.addEventListener('click', function() {
+    checkAnswer();
 });
