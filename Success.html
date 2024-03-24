@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8" />
@@ -11,39 +11,54 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
 
-        .quiz-app {
+       
+    </style>
+</head>
+
+<body style="background-color: #F5F5FF;">
+
+    <div class="quiz-app">
+
+        <div class="row" style="background-color: E0F4E0;">
+            <div class="col-md-8 col-12 first-row d-flex align-items-center justify-content-center" >
+
+                <img src="Success.png" alt="Success" class="img-responsive" width="30%">
+                <div class="text-box text-center">
+                    Félicitation ! <br>
+                   
+                    Vous Avez Réussi le Quiz. <br>
+                    Score : 14/16
+                </div>
+            </div>
+            <div class="col-4 d-none d-md-block">
+                <img src="success-vector.png" alt="Homepage-vector" class="img-responsive" width="80%">
+            </div>
+        </div>
+    </div>
+    <style>
+         .quiz-app {
             margin: 20px auto;
             width: 50%;
-            background-color: rgb(255, 255, 255);
+            background-color:#E0F4E0;
             padding: 0px;
             border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.213);
         }
 
         .text-box {
             background-color: #51BD5C;
             align-items: center;
             justify-content: center;
-            width: 220px;
-            height: 70px;
-            align-content: center;
+            height: 137px;
             color: aliceblue;
-            font-family: "Karla", sans-serif;
+            font-family: "Karla";
             font-weight: 500;
-            font-size: 1.3vw;
-            /* margin-bottom: 30px;
-            padding-bottom: 30px; */
-
-        }
-
-        .first-row {
+            font-size: 1.4vw;
+            border-radius: 20px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            background-color: aqua;
-            width: 400px;
+            line-height: 40px;
+            width: 450px;
         }
 
         .row {
@@ -51,30 +66,6 @@
             justify-content: center;
         }
     </style>
-</head>
-
-<body style="background-color: #F5F5FF;">
-
-    <div class="quiz-app ">
-
-        <div class="row">
-            <div class="col-md-8 col-12 first-row" style="background-color: aqua;">
-                <img src="media/Success.png" alt="Success" class="img-responsive" width="30%">
-
-                <div class="text-box text-center mb-5">
-                    Félicitation ! <br>
-                    Vous Avez Réussi le Quiz. <br>
-                    Score : 14/16
-                </div>
-            </div>
-            <div class="col-4 d-none d-md-block">
-                <img src="media/success-vector.png" alt="success-vector" class="img-responsive" width="100%">
-            </div>
-
-        </div>
-    </div>
-
 </body>
-
 
 </html>
